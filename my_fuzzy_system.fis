@@ -1,0 +1,46 @@
+[System]
+Name='my_fuzzy_system_hope3'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=8
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='obstacle-dist'
+Range=[0 400]
+NumMFs=3
+MF1='far':'smf',[31.2 121.6]
+MF2='near':'gaussmf',[5.59 0.245601436265724]
+MF3='close-enough':'gaussmf',[14.9 36.6]
+
+[Input2]
+Name='target-angle'
+Range=[0 180]
+NumMFs=3
+MF1='headson':'gauss2mf',[18.9 -55.0616740088106 4.01 2.01832599118943]
+MF2='opposide':'gauss2mf',[31.8 113.095238095238 1.93 295.095238095238]
+MF3='incident':'gaussmf',[20.3 36.65]
+
+[Output1]
+Name='speed'
+Range=[0 15]
+NumMFs=3
+MF1='slow':'gaussmf',[0.398813206688577 0.0471]
+MF2='fast':'gaussmf',[4.90382229928202 15]
+MF3='average':'gaussmf',[3.185 7.5]
+
+[Rules]
+1 2, 1 (1) : 1
+3 2, -2 (1) : 1
+2 1, 1 (1) : 1
+1 1, 2 (1) : 1
+3 1, 1 (1) : 1
+3 3, 3 (1) : 1
+1 3, -1 (1) : 1
+2 0, 1 (1) : 1
